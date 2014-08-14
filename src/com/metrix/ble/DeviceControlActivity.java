@@ -186,7 +186,7 @@ public class DeviceControlActivity extends Activity {
     					AlertDialog.Builder alert = new AlertDialog.Builder(DeviceControlActivity.this);
 
     					alert.setTitle("BLE Write Data");
-    					alert.setMessage("Write to BLE characteristic (Warning: no error checking)");
+    					alert.setMessage("Write Hex values to BLE characteristic (e.g. FF,0B,1C. Warning: no error checking)");
 
     					// Set an EditText view to get user input 
     					final EditText input = new EditText(DeviceControlActivity.this);
@@ -195,12 +195,17 @@ public class DeviceControlActivity extends Activity {
 
     					alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
     						public void onClick(DialogInterface dialog, int whichButton) {
-    							String value = input.getText().toString();    							
+    							String value = input.getText().toString();    		
+    							if (value.length() == 1) {
+    								value = "0" + value;
+    							}
     							Log.d(TAG, value);
     							
-    							byte[] char_value = value.getBytes();
+    							String[] value_parts = value.split(",");
+    							byte[] char_value = new byte[value_parts.length];
     							for (int i = 0; i < char_value.length; i++) {
-    								char_value[i] = (byte) (char_value[i] - '0');
+    								char_value[i] = (byte) ((Character.digit(value_parts[i].charAt(0), 16) << 4)
+    			                             + Character.digit(value_parts[i].charAt(1), 16));
     							}
     							mBluetoothLeService.writeCharacteristic(characteristic, char_value);
     						}
