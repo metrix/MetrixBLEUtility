@@ -190,7 +190,7 @@ public class DeviceControlActivity extends Activity {
 
     					// Set an EditText view to get user input 
     					final EditText input = new EditText(DeviceControlActivity.this);
-    					input.setInputType(InputType.TYPE_CLASS_NUMBER);
+    					input.setInputType(InputType.TYPE_CLASS_TEXT);
     					alert.setView(input);
 
     					alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
