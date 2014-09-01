@@ -324,7 +324,7 @@ public class DeviceControlActivity extends Activity {
     private void displayData(String data, byte[] data_bytes) {
         if (data != null) {
             mDataField.setText(data);
-            mDataFieldString.setText(data_bytes.toString());
+            mDataFieldString.setText(new String(data_bytes));
         } else {
         	Log.e(TAG, "data is null");
         }
