@@ -62,6 +62,7 @@ public class DeviceControlActivity extends Activity {
 
     private TextView mConnectionState;
     private TextView mDataField;
+    private TextView mDataFieldString;
     private String mDeviceName;
     private String mDeviceAddress;
     private ExpandableListView mGattServicesList;
@@ -120,7 +121,7 @@ public class DeviceControlActivity extends Activity {
                 displayGattServices(mBluetoothLeService.getSupportedGattServices());
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
             	//Log.i(TAG,  "got extra data");
-                displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA_STRING));
+                displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA_STRING), intent.getByteArrayExtra(BluetoothLeService.EXTRA_DATA_BYTE));
             }
         }
     };
@@ -232,6 +233,7 @@ public class DeviceControlActivity extends Activity {
     private void clearUI() {
         mGattServicesList.setAdapter((SimpleExpandableListAdapter) null);
         mDataField.setText(R.string.no_data);
+        mDataFieldString.setText(R.string.no_data);
     }
 
     @Override
@@ -250,6 +252,7 @@ public class DeviceControlActivity extends Activity {
         mGattServicesList.setOnItemLongClickListener(servicesListLongClickListner);
         mConnectionState = (TextView) findViewById(R.id.connection_state);
         mDataField = (TextView) findViewById(R.id.data_value);
+        mDataFieldString = (TextView) findViewById(R.id.data_value_string);
 
         getActionBar().setTitle(mDeviceName);
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -318,9 +321,10 @@ public class DeviceControlActivity extends Activity {
         });
     }
 
-    private void displayData(String data) {
+    private void displayData(String data, byte[] data_bytes) {
         if (data != null) {
             mDataField.setText(data);
+            mDataFieldString.setText(data_bytes.toString());
         } else {
         	Log.e(TAG, "data is null");
         }

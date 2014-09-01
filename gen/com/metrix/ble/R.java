@@ -16,14 +16,15 @@ public final class R {
     public static final class id {
         public static final int connection_state=0x7f060001;
         public static final int data_value=0x7f060002;
+        public static final int data_value_string=0x7f060003;
         public static final int device_address=0x7f060000;
-        public static final int device_name=0x7f060004;
-        public static final int gatt_services_list=0x7f060003;
-        public static final int menu_connect=0x7f060006;
-        public static final int menu_disconnect=0x7f060007;
-        public static final int menu_refresh=0x7f060005;
-        public static final int menu_scan=0x7f060008;
-        public static final int menu_stop=0x7f060009;
+        public static final int device_name=0x7f060005;
+        public static final int gatt_services_list=0x7f060004;
+        public static final int menu_connect=0x7f060007;
+        public static final int menu_disconnect=0x7f060008;
+        public static final int menu_refresh=0x7f060006;
+        public static final int menu_scan=0x7f060009;
+        public static final int menu_stop=0x7f06000a;
     }
     public static final class layout {
         public static final int actionbar_indeterminate_progress=0x7f030000;
@@ -41,6 +42,7 @@ public final class R {
         public static final int disconnected=0x7f040007;
         public static final int error_bluetooth_not_supported=0x7f040009;
         public static final int label_data=0x7f040002;
+        public static final int label_data_string=0x7f040011;
         public static final int label_device_address=0x7f040003;
         public static final int label_state=0x7f040004;
         /**  Menu items 
